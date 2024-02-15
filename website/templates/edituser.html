@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styleedituser.css') }}">
+<script src="{{ url_for('static', filename='editstate.js') }}"></script>
+<div class="container">
+    <h1>Edit User</h1>
+    <form method="post">
+        <div class="form-container">
+            <div class="user-details">
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" name="first_name" value="{{ user.FirstName }}" required><br><br>
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" value="{{ user.LastName }}" required><br><br>
+                <label>Gender:</label>
+                <input type="radio" id="male" name="gender" value="Male" {% if user.Gender.strip() =='Male' %} checked  {% endif %} required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="Female" {% if user.Gender.strip() =='Female' %} checked {% endif %} required>
+                <label for="female">Female</label><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="{{ user.Email }}" required><br><br>
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" value="{{ user.Phone }}" required><br><br>
+                <label for="address">Contact Address:</label>
+                <textarea id="address" name="address" rows="4" required>{{ user.ContactAddress }}</textarea><br><br>
+                <label for="country">Country:</label>
+                <select id="country" name="country" onchange="updateStateDropdown()" required>
+                   <option value="Country" {% if user.Country =='Country' %}selected{% endif %}>Country</option>
+                   <option value="India" {% if user.Country =='India' %}selected{% endif %}>India</option>
+                   <option value="US" {% if user.Country =='US' %}selected{% endif %}>US</option>
+                 </select>
+
+                <label for="state">State:</label>
+                <select id="state" name="state" >
+                <option value="">State</option>
+                </select>
+
+    <div id="qualifications">
+    <!-- Loop through user's qualifications and display input fields -->
+    {% for qualification in qualifications %}
+    <div class="qualification">
+        <label for="qualification_{{ loop.index }}">Qualification:</label>
+        <button type="button" class="add-button" onclick="addQualification()">+</button>
+        <button type="button" class="remove-button" onclick="removeQualification(this)">-</button>
+        <input type="text" id="qualification_{{ loop.index }}" name="qualification[]" value="{% if qualification.Qualification != 'None' %}{{ qualification.Qualification }}{% endif %}" required maxlength="20"><br><br>
+        <label for="year_{{ loop.index }}">Year of Passing:</label>
+        <input type="text" id="year_{{ loop.index }}" name="year[]" value="{{ qualification.YearOfPassing }}" required><br><br>
+        <label for="university_{{ loop.index }}">University:</label>
+        <input type="text" id="university_{{ loop.index }}" name="university[]" value="{{ qualification.University }}" required maxlength="20"><br><br>
+        <label for="grade_{{ loop.index }}">Grade/Percentage:</label>
+        <input type="text" id="grade_{{ loop.index }}" name="grade[]" value="{{ qualification.GradePercentage }}" required maxlength="20"><br><br>
+      </div>
+    {% endfor %}
+</div>
+
+
+</div>
+        </div>
+        <div class="button-container">
+            <a class="button" onclick="window.location.href='{{ url_for('auth.home') }}'" style="color: white;">Back to Home</a>
+            <button class='button' type="submit" value="Update User">Update User</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

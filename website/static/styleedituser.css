@@ -1,0 +1,57 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0; /* Background color for the entire page */
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff; /* Container background color */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    border-radius: 5px; /* Rounded corners */
+}
+h1 {
+    text-align: center;
+}
+
+
+.button {
+  background-color: #007BFF;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: auto; /* Instead of 100% width, set it to auto to fit content */
+  opacity: 0.9;
+  color: white;
+  text-decoration: none; /* Remove underline or other text decoration */
+  display: inline-block; /* Ensure it doesn't take full width */
+  text-align: center;
+   border-radius: 5px
+}
+
+.button:hover {
+  opacity: 1; /* Increase opacity on hover for visual feedback */
+}
+.button a {
+  color: white;
+}
+input[type=text], input[type='email'], input[type='tel'], textarea, select {
+    border-radius: 10px;
+    margin-bottom: 25px;
+    padding: 10px 20px;
+    display: block;
+    border: 1px solid #ced4da;
+    text-align: left;
+    width: 100%; /* Set width to 100% for full width */
+    background-clip: padding-box;
+    position: relative;
+    }
+
+.button-container {
+    display: flex;
+    justify-content: space-between; /* This will evenly space the buttons */
+}
+

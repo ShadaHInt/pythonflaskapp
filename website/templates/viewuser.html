@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}User Details{% endblock %}
+
+{% block content %}
+<!-- Add this script to your HTML -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styleviewuser.css') }}">
+<div class="container">
+    <h1>User Details </h1>
+    <table>
+        <tr>
+            <th>Email ID</th>
+            <td>{{ user.Email }}</td>
+        </tr>
+        <tr>
+            <th>First Name</th>
+            <td>{{ user.FirstName }}</td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td>{{ user.LastName }}</td>
+        </tr>
+        <tr>
+            <th>Phone Number</th>
+            <td>{{ user.Phone }}</td>
+        </tr>
+        <tr>
+            <th>Gender</th>
+            <td>{{ user.Gender }}</td>
+        </tr>
+        <tr>
+            <th>Contact Address</th>
+            <td>{{ user.ContactAddress }}</td>
+        </tr>
+        <tr>
+            <th>Country</th>
+            <td>{{ user.Country }}</td>
+        </tr>
+        <tr>
+            <th>State</th>
+            <td>{{ user.States }}</td>
+        </tr>
+        <tr>
+            <th>Qualifications</th>
+            <td>
+              <ul>
+               {% for qualification in qualifications %}
+               <li>
+                 {{ qualification.Qualification }} (Year: {{ qualification.YearOfPassing }}, University: {{ qualification.University }}, Grade: {{ qualification.GradePercentage }})
+              </li>
+              {% endfor %}
+             </ul>
+            </td>
+        </tr>
+    </table>
+    <div class="container text-center">
+    <a href="{{ url_for('auth.home') }}" class="btn btn-primary">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

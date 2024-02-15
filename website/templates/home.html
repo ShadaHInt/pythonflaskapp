@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylehome.css') }}">
+<div class="container">
+    <h1>User Dashboard</h1>
+    <div class="container text-right ">
+        <button class ='btn btn-primary' onclick="location.href='http://127.0.0.1:5000/Adduser'">Add User</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Email ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th class="actions" style="text-align: center" > Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in user_data %}
+            <tr>
+                <td><a href="{{ url_for('auth.edituser', UserID=user.UserID) }}">{{ user.Email }}</a></td>
+
+                <td>{{ user.FirstName }}</td>
+                <td>{{ user.LastName }}</td>
+                <td>{{ user.Phone }}</td>
+                <td class="actions">
+                    <button class ='btn btn-primary' onclick="location.href='{{ url_for('auth.view', UserID=user.UserID) }}'">View</button>
+                    <button class ='btn btn-primary' onclick="location.href='{{ url_for('auth.delete', UserID=user.UserID) }}'">Delete</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
